@@ -1,12 +1,31 @@
     import XCTest
     @testable import SDSOrientationAdaptiveStack
+    import SwiftUI
+    import UIKit
 
     final class SDSOrientationAdaptiveStackTests: XCTestCase {
-        func testExample() {
-            // This is an example of a functional test case.
-            // Use XCTAssert and related functions to verify your tests produce the correct
-            // results.
-            //XCTAssertEqual(SDSOrientationAdaptiveStack().text, "Hello, World!")
-            XCTFail("No tests!")
+        func testLayout() throws {
+            let sut = ContentView()
+            XCTAssertNotNil(sut)
         }
     }
+
+    struct ContentView: View {
+        var body: some View {
+            SDSOrientationAdaptiveStack(first: {
+                Rectangle()
+                    .fill(Color.red)
+                    .frame(width: 100, height: 100)
+                    .overlay(Text("First"))
+                    .accessibility(identifier: "firstRect")
+            }, second: {
+                Rectangle()
+                    .fill(Color.green)
+                    .frame(width: 100, height: 100)
+                    .overlay(Text("Second"))
+            })
+                .padding()
+        }
+    }
+    
+    
