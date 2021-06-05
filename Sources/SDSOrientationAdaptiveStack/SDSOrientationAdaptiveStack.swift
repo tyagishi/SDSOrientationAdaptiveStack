@@ -17,7 +17,7 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
     public init(@ViewBuilder first: () -> Content1, @ViewBuilder second: () -> Content2, ratio: Binding<CGFloat> = .constant(0.5) ) {
         self.firstContent = first()
         self.secondContent = second()
-        self._orientation = State(wrappedValue: UIDevice.current.orientation)
+        self._orientation = State(wrappedValue: UIDevice.current.orientation.isValidInterfaceOrientation ? UIDevice.current.orientation : UIDeviceOrientation.portrait)
         self._firstContentRatio = ratio
     }
 
