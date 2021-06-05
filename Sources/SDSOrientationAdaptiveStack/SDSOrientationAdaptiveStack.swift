@@ -58,7 +58,9 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-            orientation = UIDevice.current.orientation
+            if UIDevice.current.orientation.isValidInterfaceOrientation {
+                orientation = UIDevice.current.orientation
+            }
         }
     }
 }
