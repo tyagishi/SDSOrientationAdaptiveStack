@@ -6,14 +6,13 @@
 ![SPM is supported](https://img.shields.io/badge/SPM-Supported-orange)
 ![license](https://img.shields.io/badge/license-MIT-lightgrey)
 
-orientation 
 <!--
 comment
 -->
 
 ## Feature
 
-swifth HStack / VStack depends on device orientation
+swifth HStack / VStack according to device orientation
 
 ## in 30 sec.
 https://user-images.githubusercontent.com/6419800/120910504-683d5a00-c6ba-11eb-973b-a091a29f4f7b.mp4
