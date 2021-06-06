@@ -1,5 +1,11 @@
 # SDSOrientationAdaptiveStack
 
+
+![platform](https://img.shields.io/badge/Platform-iOS-lightgrey)
+![macOS iOS](https://img.shields.io/badge/platform-iOS_macOS-lightgrey)
+![SPM is supported](https://img.shields.io/badge/SPM-Supported-orange)
+![license](https://img.shields.io/badge/license-MIT-lightgrey)
+
 orientation 
 <!--
 comment
@@ -43,7 +49,7 @@ struct ContentView: View {
 ```
 
 ## Installation
-Swift Package Manager: URL:
+use Swift Package Manager: URL: https://github.com/tyagishi/SDSOrientationAdaptiveStack
 
 ## Requirements
 none
