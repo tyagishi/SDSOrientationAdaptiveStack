@@ -11,7 +11,7 @@ comment
 
 ## Feature
 
-swifth HStack / VStack according to device orientation
+switch HStack / VStack according to device orientation
 
 ## in 30 sec.
 https://user-images.githubusercontent.com/6419800/120910504-683d5a00-c6ba-11eb-973b-a091a29f4f7b.mp4
