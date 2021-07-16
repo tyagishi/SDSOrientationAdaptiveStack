@@ -9,6 +9,16 @@ import SwiftUI
 import Combine
 import UIKit
 
+extension UIDevice {
+    static public func stableDeviceOrientation() -> UIDeviceOrientation {
+        if UIDevice.current.orientation.isValidInterfaceOrientation {
+            return UIDevice.current.orientation
+        } else {
+            return UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height ? UIDeviceOrientation.landscapeLeft : UIDeviceOrientation.portrait
+        }
+    }
+}
+
 public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View {
     var firstContent: Content1
     var secondContent: Content2
@@ -58,16 +68,11 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
             }
         }
         .onAppear(perform: {
-            if UIDevice.current.orientation.isValidInterfaceOrientation {
-                orientation = UIDevice.current.orientation
-            } else {
-                orientation = UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height ? UIDeviceOrientation.landscapeLeft : UIDeviceOrientation.portrait
-            }
+            orientation = UIDevice.stableDeviceOrientation()
         })
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-            if UIDevice.current.orientation.isValidInterfaceOrientation {
-                orientation = UIDevice.current.orientation
-            }
+            orientation = UIDevice.stableDeviceOrientation()
         }
     }
+    
 }
