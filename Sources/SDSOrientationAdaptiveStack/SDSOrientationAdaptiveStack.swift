@@ -19,6 +19,27 @@ extension UIDevice {
     }
 }
 
+extension UIDeviceOrientation: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .unknown:
+            return "unknown"
+        case .portrait:
+            return "portrait"
+        case .portraitUpsideDown:
+            return "portraitUpsideDown"
+        case .landscapeLeft:
+            return "landscapeLeft"
+        case .landscapeRight:
+            return "landscapeRight"
+        case .faceUp:
+            return "faceUp"
+        case .faceDown:
+            return "faceDown"
+        }
+    }
+}
+
 public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View {
     var firstContent: Content1
     var secondContent: Content2
@@ -29,6 +50,8 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
         self.firstContent = first()
         self.secondContent = second()
         self._firstContentRatio = ratio
+        self._orientation = State(wrappedValue: UIDevice.stableDeviceOrientation())
+        print(orientation)
     }
 
     public var body: some View {
