@@ -7,17 +7,17 @@
 
 import SwiftUI
 import Combine
+import UIKit
 
 public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View {
     var firstContent: Content1
     var secondContent: Content2
-    @State var orientation: UIDeviceOrientation
+    @State var orientation: UIDeviceOrientation = UIDevice.current.orientation
     @Binding var firstContentRatio: CGFloat
     
     public init(@ViewBuilder first: () -> Content1, @ViewBuilder second: () -> Content2, ratio: Binding<CGFloat> = .constant(0.5) ) {
         self.firstContent = first()
         self.secondContent = second()
-        self._orientation = State(wrappedValue: UIDevice.current.orientation.isValidInterfaceOrientation ? UIDevice.current.orientation : UIDeviceOrientation.portrait)
         self._firstContentRatio = ratio
     }
 
@@ -57,6 +57,13 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
                 }
             }
         }
+        .onAppear(perform: {
+            if UIDevice.current.orientation.isValidInterfaceOrientation {
+                orientation = UIDevice.current.orientation
+            } else {
+                orientation = UIScreen.main.bounds.size.width > UIScreen.main.bounds.size.height ? UIDeviceOrientation.landscapeLeft : UIDeviceOrientation.portrait
+            }
+        })
         .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
             if UIDevice.current.orientation.isValidInterfaceOrientation {
                 orientation = UIDevice.current.orientation
