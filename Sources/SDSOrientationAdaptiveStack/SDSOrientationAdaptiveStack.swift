@@ -51,7 +51,6 @@ public struct SDSOrientationAdaptiveStack<Content1: View, Content2: View> : View
         self.secondContent = second()
         self._firstContentRatio = ratio
         self._orientation = State(wrappedValue: UIDevice.stableDeviceOrientation())
-        print(orientation)
     }
 
     public var body: some View {
