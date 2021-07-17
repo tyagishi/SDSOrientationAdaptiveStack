@@ -36,6 +36,8 @@ extension UIDeviceOrientation: CustomStringConvertible {
             return "faceUp"
         case .faceDown:
             return "faceDown"
+        default:
+            return "unknown"
         }
     }
 }
